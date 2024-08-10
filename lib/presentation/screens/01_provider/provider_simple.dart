@@ -1,9 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'provider_simple.g.dart';
 
-@required
+@riverpod
 String helloWorld(HelloWorldRef ref) {
   return 'Hola Mundo';
-  
 }
