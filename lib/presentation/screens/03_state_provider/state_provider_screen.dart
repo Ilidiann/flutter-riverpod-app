@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_app/config/config.dart';
 import 'package:riverpod_app/presentation/screens/domain.dart';
 
 class StateProviderScreen extends ConsumerWidget {
@@ -8,7 +9,9 @@ class StateProviderScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final counter = ref.watch(counterProvider);
-    final darkMode =ref.watch(darkModeProvider);
+    final darkMode = ref.watch(darkModeProvider);
+    final randonName = ref.watch(randonNameProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('State Provider'),
@@ -20,15 +23,14 @@ class StateProviderScreen extends ConsumerWidget {
             flex: 1,
           ),
           IconButton(
-            if(darkMode.=true){
-            icon: const Icon( Icons.light_mode_outlined, size: 100 ),}
-            else{
-            icon: const Icon(Icons.dark_mode_outlined, size: 100),}
+            icon: Icon(
+                darkMode ? Icons.dark_mode_outlined : Icons.light_mode_outlined,
+                size: 100),
             onPressed: () {
-
+              ref.read(darkModeProvider.notifier).toggleDarkMode();
             },
           ),
-          const Text('Fernando Herrera', style: TextStyle(fontSize: 25)),
+          Text(randonName, style: const TextStyle(fontSize: 25)),
           TextButton.icon(
             icon: const Icon(
               Icons.add,
@@ -45,7 +47,11 @@ class StateProviderScreen extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Nombre aleatorio'),
         icon: const Icon(Icons.refresh_rounded),
-        onPressed: () {},
+        onPressed: () {
+          ref
+              .read(randonNameProvider.notifier)
+              .changeName(RandomGenerator.getRandomName());
+        },
       ),
     );
   }

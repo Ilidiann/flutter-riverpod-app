@@ -1,4 +1,6 @@
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
 
 part 'state_providers.g.dart';
 
@@ -25,5 +27,17 @@ class DarkMode extends _$DarkMode {
 
   void toggleDarkMode() {
     state = !state;
+  }
+}
+//Para eliminar el audispose cambiar el Riverpod a mayuscula
+@Riverpod(keepAlive: true)
+class RandonName extends _$RandonName {
+  @override
+  String build() {
+    return 'Muchachito Loco';
+  }
+
+  void changeName(String name) {
+    state =name ;
   }
 }
