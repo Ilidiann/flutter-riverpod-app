@@ -31,7 +31,7 @@ class _TodoView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final filterState = ref.watch(todoCurrentFilterProvider);
-    final listaInvitados = ref.watch(listaInvitadosProvider);
+    //final listaInvitados = ref.watch(listaInvitadosProvider);
     final listafiltradaInvitados = ref.watch(filtradorProvider);
 
     return Column(
